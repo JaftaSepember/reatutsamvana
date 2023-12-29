@@ -1,0 +1,71 @@
+<html>
+<head>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ text-align: center;
+ }
+
+ #game-board {
+ display: inline-block;
+ }
+
+ #score {
+ font-size: 2em;
+ }
+
+ button {
+ font-size: 1.5em;
+ margin: 0.5em;
+ }
+ </style>
+</head>
+<body>
+ <h1>Sake Game</h1>
+ <div id="score">Score: 0</div>
+ <div id="game-board"></div>
+ <button id="start-button">Start</button>
+ <button id="pause-button">Pause</button>
+ <button id="left-button">Left</button>
+ <button id="right-button">Right</button>
+
+ <script>
+ let gameBoard = document.getElementById("game-board");
+ let scoreElement = document.getElementById("score");
+ let startButton = document.getElementById("start-button");
+ let pauseButton = document.getElementById("pause-button");
+ let leftButton = document.getElementById("left-button");
+ let rightButton = document.getElementById("right-button");
+
+ let game;
+ let score = 0;
+
+ function startGame() {
+ game = new SakeGame(gameBoard, onSakeCollected);
+ game.start();
+ }
+
+ function pauseGame() {
+ game.pause();
+ }
+
+ function moveLeft() {
+ game.movePlayer(-1);
+ }
+
+ function moveRight() {
+ game.movePlayer(1);
+ }
+
+ function onSakeCollected() {
+ score++;
+ scoreElement.textContent = `Score: ${score}`;
+ }
+
+ startButton.addEventListener("click", startGame);
+ pauseButton.addEventListener("click", pauseGame);
+ leftButton.addEventListener("click", moveLeft);
+ rightButton.addEventListener("click", moveRight);
+ </script>
+</body>
+</html>
