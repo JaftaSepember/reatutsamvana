@@ -42,24 +42,35 @@
  console.log(code)
  alert(code)
 
- if (code) {
-   fetch('https://huggingface.co/oauth/token', {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/x-www-form-urlencoded'
-     },
-     body: `client_id=f932f514-cc87-4f38-a6e2-7d432eed902e&client_secret=4d4412b4-dcec-41ef-b3e0-9941bfa67bc2&grant_type=authorization_code&code=${code}&redirect_uri=https://jaftasepember.github.io/reatutsamvana/`
-   })
-   .then(response => response.json())
-   .then(data => {
-     localStorage.setItem('huggingface-token', data.access_token);
-alert(data);
-console.log(data.access_token);
-   })
-   .catch(error => {
-     console.error(error);
-   });
- }
+ const params = new URLSearchParams({
+  grant_type: "authorization_code",
+  code: code,
+  redirect_uri: "https://jaftasepember.github.io/reatutsamvana/",
+  client_id: 'f932f514-cc87-4f38-a6e2-7d432eed902e',
+  client_secret: 4d4412b4-dcec-41ef-b3e0-9941bfa67bc2,
+});
+
+ const TOKEN_ENDPOINT = "https://huggingface.co/oauth/token'";
+
+const options = {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body: params,
+};
+
+  fetch(TOKEN_ENDPOINT, options)
+  .then((res) => res.json())
+  .then((json) => {
+    const accessToken = json["access_token"];
+    console.log("Access Token:", accessToken);
+    // Do something with the access token here
+  })
+  .catch((err) => {
+    console.error("Error:", err);
+  });
 
  let game;
  let score = 0;
