@@ -37,6 +37,11 @@
  let leftButton = document.getElementById("left-button");
  let rightButton = document.getElementById("right-button");
 
+ const urlParams = new URLSearchParams(window.location.search);
+ const code = urlParams.get('code');
+ console.log(code)
+ alert(code)
+
  let game;
  let score = 0;
 
