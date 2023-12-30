@@ -29,7 +29,11 @@
  <button id="left-button">Left</button>
  <button id="right-button">Right</button>
 
- <script>
+ <script type="module">
+
+    import { HfInference } from 'https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.4/+esm';
+    import { createRepo, commit, deleteRepo, listFiles } from "https://cdn.jsdelivr.net/npm/@huggingface/hub@0.12.3/+esm";
+  const inference = new HfInference();
  let gameBoard = document.getElementById("game-board");
  let scoreElement = document.getElementById("score");
  let startButton = document.getElementById("start-button");
@@ -48,7 +52,11 @@
  let score = 0;
 
  function startGame() {
-  alert('Hello')
+  const res = await inference.translation({
+   model: 't5-base',
+   inputs: 'My name is Wolfgang and I live in Amsterdam'
+  })
+  alert(res)
  }
 
  function pauseGame() {
