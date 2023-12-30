@@ -66,10 +66,9 @@
       body: postData
     };
 
-    fetch('https://huggingface.co/oauth/token', options).then(response => response.json()).then(data => {
+    fetch('http://huggingface.co/oauth/token', options).then(response => response.json()).then(data => {
   console.log('Received access token:', data.access_token);
-}, {mode: 'no-cors'});
-
+});
  let game;
  let score = 0;
 
