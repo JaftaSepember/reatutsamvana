@@ -52,11 +52,16 @@
  let score = 0;
 
  async function startGame() {
-  const res = await inference.translation({
-   model: 't5-base',
-   inputs: 'My name is Wolfgang and I live in Amsterdam'
-  })
-  alert(res)
+  try{
+   const res = await inference.translation({
+    model: 't5-base',
+    inputs: 'My name is Wolfgang and I live in Amsterdam'
+   })
+   console.log(res.json())
+  }
+  catch(err){
+   alert(err)
+  }
  }
 
  function pauseGame() {
