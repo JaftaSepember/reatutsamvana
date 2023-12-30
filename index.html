@@ -42,46 +42,13 @@
  console.log(code)
  alert(code)
 
- const params = new URLSearchParams({
-  grant_type: "authorization_code",
-  code: code,
-  redirect_uri: "https://jaftasepember.github.io/reatutsamvana/",
-  client_id: 'f932f514-cc87-4f38-a6e2-7d432eed902e',
-  client_secret: '4d4412b4-dcec-41ef-b3e0-9941bfa67bc2'
-});
-
- const TOKEN_ENDPOINT = "https://huggingface.co/oauth/token'";
-
-const options = {
-  method: "POST",
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body: params,
-};
-
  
-
-  fetch(TOKEN_ENDPOINT, options)
-  .then((res) => res.json())
-  .then((json) => {
-    const accessToken = json["access_token"];
-    console.log("Access Token:", accessToken);
-   alert(accessToken)
-    // Do something with the access token here
-  })
-  .catch((err) => {
-    console.error("Error:", err);
-   alert(err)
-  });
 
  let game;
  let score = 0;
 
  function startGame() {
- game = new SakeGame(gameBoard, onSakeCollected);
- game.start();
+  alert('Hello')
  }
 
  function pauseGame() {
