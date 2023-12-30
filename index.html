@@ -48,12 +48,12 @@
      headers: {
        'Content-Type': 'application/x-www-form-urlencoded'
      },
-     body: `client_id=f932f514-cc87-4f38-a6e2-7d432eed902e&client_secret=4d4412b4-dcec-41ef-b3e0-9941bfa67bc2&grant_type=authorization_code&code=xwVwfRlKYOVflbZV&redirect_uri=https://huggingface.co/chat/conversation/658b15862c5ef2d8ad8dc007`
+     body: `client_id=f932f514-cc87-4f38-a6e2-7d432eed902e&client_secret=4d4412b4-dcec-41ef-b3e0-9941bfa67bc2&grant_type=authorization_code&code=${code}&redirect_uri=https://jaftasepember.github.io/reatutsamvana/`
    })
    .then(response => response.json())
    .then(data => {
      localStorage.setItem('huggingface-token', data.access_token);
-alert(data.access_token);
+alert(data);
 console.log(data.access_token);
    })
    .catch(error => {
