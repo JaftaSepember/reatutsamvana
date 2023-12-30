@@ -46,15 +46,43 @@
  console.log(code)
   const redirectUri = 'https://jaftasepember.github.io/reatutsamvana/'
   const clientId = 'f932f514-cc87-4f38-a6e2-7d432eed902e';
- alert(code)
+  const clientSecret = '4d4412b4-dcec-41ef-b3e0-9941bfa67bc2'
 
-  try{fetch('https://huggingface.co/oauth/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: `client_id=${clientId}&client_secret=4d4412b4-dcec-41ef-b3e0-9941bfa67bc2&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
-    })} catch(e){
+  try{
+   const postData = querystring.stringify({
+  client_id: clientId,
+  client_secret: clientSecret,
+  code: code,
+  redirect_uri: redirectUri,
+  grant_type: 'authorization_code'
+});
+
+const options = {
+  hostname: 'https://huggingface.co/oauth/token',
+  port: 443,
+  path: '/oauth2/token',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': Buffer.byteLength(postData)
+  }
+};
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', d => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.write(postData);
+req.end();
+   } catch(e){
      console.log(e)}
 
  let game;
