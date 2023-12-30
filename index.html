@@ -51,7 +51,7 @@
  let game;
  let score = 0;
 
- function startGame() {
+ async function startGame() {
   const res = await inference.translation({
    model: 't5-base',
    inputs: 'My name is Wolfgang and I live in Amsterdam'
