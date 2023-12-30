@@ -47,13 +47,14 @@
   const redirectUri = 'https://jaftasepember.github.io/reatutsamvana/'
  alert(code)
 
- fetch('https://huggingface.co/oauth/token', {
+  try{fetch('https://huggingface.co/oauth/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: `client_id=${clientId}&client_secret=4d4412b4-dcec-41ef-b3e0-9941bfa67bc2&grant_type=authorization_code&code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`
-    })
+    })} catch(e){
+     console.log(e)}
 
  let game;
  let score = 0;
